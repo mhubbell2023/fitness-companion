@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Fitness Companion</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<nav>
+    <h1>💪 Fitness Companion</h1>
+    <div>
+        <a href="{{ url_for('login') }}">Login</a>
+    </div>
+</nav>
+
+<div class="container">
+    <h2>Track Your Fitness Journey</h2>
+    <p>Log workouts, set goals, and watch your progress grow.</p>
+    <a href="{{ url_for('register') }}" class="btn">Get Started</a>
+</div>
+
+</body>
+</html>

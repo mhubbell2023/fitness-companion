@@ -1,0 +1,52 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+    <h1>🏋️ Workout Dashboard</h1>
+
+    <!-- Navigation -->
+    <div>
+        <a href="{{ url_for('home') }}">Home</a> |
+        <a href="{{ url_for('add_workout') }}">Add Workout</a>
+    </div>
+
+    <hr>
+
+    <h2>Workout History</h2>
+
+    {% if workouts %}
+        <table border="1" cellpadding="10">
+            <tr>
+                <th>Exercise</th>
+                <th>Sets</th>
+                <th>Reps</th>
+                <th>Weight</th>
+                <th>Date</th>
+            </tr>
+
+            {% for workout in workouts %}
+            <tr>
+                <td>{{ workout["exercise"] }}</td>
+                <td>{{ workout["sets"] }}</td>
+                <td>{{ workout["reps"] }}</td>
+                <td>{{ workout["weight"] }}</td>
+                <td>{{ workout["date"] }}</td>
+                <td>
+                    <a href="{{ url_for('edit_workout', workout_id=workout['id']) }}">Edit</a>
+                    <a href="{{ url_for('delete_workout', workout_id=workout['id']) }}">Delete</a>
+                </td>
+            </tr> 
+            {% endfor %}
+        </table>
+
+    {% else %}
+        <p>No workouts logged yet.</p>
+    {% endif %}
+
+</body>
+</html>
