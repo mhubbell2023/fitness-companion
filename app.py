@@ -90,6 +90,9 @@ def dashboard():
     if 'user_id' not in session:
         return redirect(url_for('login'))
 
+    # Get the workout type entered by the user
+    exercise_filter = request.args.get('exercise', '').strip()
+
     conn = get_db_connection()
     cursor = conn.cursor()
 
