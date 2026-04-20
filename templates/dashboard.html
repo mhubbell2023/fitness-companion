@@ -19,6 +19,17 @@
 
     <h2>Workout History</h2>
 
+    <form method="GET" action="{{ url_for('dashboard') }}" class="filter-form">
+    <input
+        type="text"
+        name="exercise"
+        placeholder="Filter by workout type"
+        value="{{ exercise_filter }}"
+    >
+    <button type="submit">Filter</button>
+    <a href="{{ url_for('dashboard') }}">Clear</a>
+</form>
+
     {% if workouts %}
     <div class="workout-table">
         <table border:1px solid cellpadding="20">
@@ -48,7 +59,11 @@
     </div>
 
     {% else %}
-        <p>No workouts logged yet.</p>
+        {% if exercise_filter %}
+            <p>No workouts found for "{{ exercise_filter }}".</p>
+        {% else %}
+            <p>No workouts logged yet.</p>
+        {% endif %}
     {% endif %}
 
 </body>
