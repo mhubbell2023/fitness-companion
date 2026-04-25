@@ -1,25 +1,65 @@
-
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Login</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Log in — FTRK</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-    <h1>Login</h1>
+<div class="auth-page">
 
-    <form method="POST">
-        <div class="input-box">
-            <input type="text" name="username" required> <label>Username:</label>
-        </div>
-        <div class="input-box">
-            <input type="password" name="password" required> <label>Password:</label>
-        </div>
+  <aside class="auth-left">
+    <div class="auth-left-glow"></div>
+    <a href="{{ url_for('home') }}" class="fc-logo" style="position:relative;z-index:1;">
+      <span class="fc-logo-icon">
+        <svg viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M2 9H4.5L6.5 4L9 13L11.5 6L13.5 9H16" stroke="#0D0D0D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </span>
+      FTRK
+    </a>
+    <div class="auth-left-content">
+      <p class="auth-tagline">Train.<br><span class="accent">Track.</span><br>Transform.</p>
+      <ul class="auth-features">
+        <li><span class="feature-dot"></span> Log workouts in seconds</li>
+        <li><span class="feature-dot"></span> Visualize your progress over time</li>
+        <li><span class="feature-dot"></span> Set and crush your personal goals</li>
+      </ul>
+    </div>
+  </aside>
 
-        <button type="submit">Login</button>
+  <main class="auth-right">
+    <a href="{{ url_for('home') }}" class="fc-back">
+      <svg viewBox="0 0 14 14" fill="none"><path d="M10 7H4M6 4L2 7L6 10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      Back
+    </a>
+    <h1 class="auth-title">Welcome back</h1>
+    <p class="auth-subtitle">Log in to your account to continue training</p>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        {% for category, message in messages %}
+          <div class="fc-alert fc-alert-{{ 'error' if category == 'danger' else category }}">{{ message }}</div>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+
+    <form method="POST" action="{{ url_for('login') }}" novalidate>
+      <div class="form-group">
+        <label class="form-label" for="username">Username</label>
+        <input class="form-input" type="text" id="username" name="username" placeholder="your_username" autocomplete="username" required />
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="password">Password</label>
+        <input class="form-input" type="password" id="password" name="password" placeholder="••••••••" autocomplete="current-password" required />
+      </div>
+      <button type="submit" class="btn btn-primary btn-block" style="margin-top:8px;">Log in</button>
     </form>
 
-    <br>
-    <a class="register" href="{{ url_for('register') }}">Need an account? Register</a>
+    <p class="auth-switch">No account yet? <a href="{{ url_for('register') }}">Create one free</a></p>
+  </main>
+
+</div>
 </body>
 </html>
