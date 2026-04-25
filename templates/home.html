@@ -1,23 +1,84 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Fitness Companion</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FTRK — Fitness Companion</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
+<div class="landing-page">
 
-<nav>
-    <h1>💪 Fitness Companion</h1>
-    <div>
-        <a href="{{ url_for('login') }}">Login</a>
+  <div class="landing-bg-wrap">
+    <div class="landing-radial"></div>
+    <div class="landing-grid"></div>
+  </div>
+
+  <nav class="landing-nav">
+    <a href="{{ url_for('home') }}" class="fc-logo">
+      <span class="fc-logo-icon">
+        <svg viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M2 9H4.5L6.5 4L9 13L11.5 6L13.5 9H16" stroke="#0D0D0D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </span>
+      FTRK
+    </a>
+    <a href="{{ url_for('login') }}" class="btn btn-outline" style="font-size:13px; padding:8px 20px;">Log in</a>
+  </nav>
+
+  <section class="landing-hero">
+    <div class="hero-content">
+      <p class="hero-eyebrow">Your Fitness Companion</p>
+      <h1 class="hero-headline">
+        Build the<br>
+        <span class="accent">Body You</span>
+        Want.
+      </h1>
+      <p class="hero-sub">
+        Log workouts, set goals, and track your progress with clarity.
+        Built for people who take training seriously.
+      </p>
+      <div class="hero-cta">
+        <a href="{{ url_for('register') }}" class="btn btn-primary">
+          Start for free
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+            <path d="M2 7H12M8 3L12 7L8 11" stroke="#0D0D0D" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+        <a href="{{ url_for('login') }}" class="btn btn-ghost">Already a member?</a>
+      </div>
     </div>
-</nav>
 
-<div class="container">
-    <h2>Track Your Fitness Journey</h2>
-    <p>Log workouts, set goals, and watch your progress grow.</p>
-    <a href="{{ url_for('register') }}" class="btn">Get Started</a>
+    <div class="hero-card" aria-hidden="true">
+      <p class="hero-card-label">Weekly Goal</p>
+      <div class="hero-card-ring">
+        <svg viewBox="0 0 76 76">
+          <circle class="ring-track" cx="38" cy="38" r="30"/>
+          <circle class="ring-fill"  cx="38" cy="38" r="30"/>
+        </svg>
+        <div class="ring-center">
+          <span class="ring-pct">78%</span>
+          <span class="ring-sub">complete</span>
+        </div>
+      </div>
+      <p class="hero-card-label" style="margin-bottom:6px;">This Week</p>
+      <div class="hero-card-bars">
+        <div class="bar" style="height:100%;"></div>
+        <div class="bar" style="height:100%;"></div>
+        <div class="bar" style="height:100%;"></div>
+        <div class="bar" style="height:100%;"></div>
+        <div class="bar" style="height:100%;"></div>
+      </div>
+      <p class="hero-card-footer"><span class="up">+12%</span> vs last week</p>
+    </div>
+  </section>
+
+  <div class="landing-stats">
+    <div class="stat-item"><p class="stat-num">12K+</p><p class="stat-label">Active athletes</p></div>
+    <div class="stat-item"><p class="stat-num">4.9</p><p class="stat-label">Average rating</p></div>
+    <div class="stat-item"><p class="stat-num">850+</p><p class="stat-label">Exercises logged</p></div>
+  </div>
+
 </div>
-
 </body>
 </html>
